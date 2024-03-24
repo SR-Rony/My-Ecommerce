@@ -51,7 +51,6 @@ const postUser = async(req,res)=>{
             name:name,
             email:email,
             password:password,
-            images:images
             },
             jwtSecrictKey,
             "10m"
