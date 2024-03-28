@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import UserList from '../components/users-list/UserList'
-import ActiveUser from '../components/active-user/ActiveUser'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-      <ActiveUser/>
+      <h1>welcome to home pages</h1>
 
     </div>
   )
