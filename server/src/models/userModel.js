@@ -25,7 +25,16 @@ const userSchema = new Schema({
         required:[true,"passwort is required"],
         min: [6, 'Must be at least 6, got {VALUE}'],
         set : (v)=>bcrypt.hashSync(v, bcrypt.genSaltSync(10))
+    },
+    isAdmin : {
+        type : Boolean,
+        default : false
+    },
+    isBanned : {
+        type : Boolean,
+        default : false
     }
+
 }) 
 
 module.exports = mongoose.model("Users",userSchema)

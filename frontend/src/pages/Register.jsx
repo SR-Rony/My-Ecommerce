@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Button, Checkbox, Form, Input, Upload } from 'antd';
+import { Button, Form, Input, } from 'antd';
 import Heading from '../components/heading/Heading';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { PlusOutlined } from '@ant-design/icons';
 
 
 

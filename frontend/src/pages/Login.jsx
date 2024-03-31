@@ -23,50 +23,62 @@ const Login = () => {
         navigate("/home")
       }
 
-        const usersFun=async()=>{
-            const allUser = await axios.get("http://localhost:3001/api/user")
-            let users =allUser.data.users
-            setUsers(users)
-        }
-        usersFun()
+        // const usersFun=async()=>{
+        //     const allUser = await axios.get("http://localhost:3001/api/user")
+        //     let users =allUser.data.users
+        //     setUsers(users)
+        // }
+        // usersFun()
     },[])
 
   const onFinish = async(values) => {
-    setLoading(true)
-    await axios.post("http://localhost:3001/api/user/login",{
-      email:values.email,
-      password:values.password
-    })
-    .then(()=>{
-      users.map((item)=>{
-        if(item.email==values.email){
-          let user={
-            name:item.name,
-            email:item.email,
-            password:item.password
-          }
-          dispatch(activeUser(user))
-          localStorage.setItem("user",JSON.stringify(user))
-          navigate("/home")
-          setLoading(false)
-        }
+    try{
+      setLoading(true)
+      let data = await axios.post("http://localhost:3001/api/user/login",{
+        email:values.email,
+        password:values.password
       })
-      
-    })
-    .catch((err)=>{
-      let error=err.response.data.message
+      // 
+      let userData=data.data.data
+      dispatch(activeUser(userData))
+      localStorage.setItem("user",JSON.stringify(userData))
+      navigate("/home")
       setLoading(false)
-      toast.error(error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
-    })
+
+    }catch(error){
+      console.log(error);
+    }
+
+    // .then(()=>{
+    //   users.map((item)=>{
+    //     if(item.email==values.email){
+    //       let user={
+    //         name:item.name,
+    //         email:item.email,
+    //         password:item.password
+    //       }
+    //       dispatch(activeUser(user))
+    //       localStorage.setItem("user",JSON.stringify(user))
+    //       navigate("/home")
+    //       setLoading(false)
+    //     }
+    //   })
+      
+    // })
+    // .catch((err)=>{
+    //   let error=err.response.data.message
+    //   setLoading(false)
+    //   toast.error(error, {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "dark",
+    //     });
+    // })
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);

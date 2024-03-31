@@ -20,7 +20,7 @@ const Verification = () => {
             console.log(res);
             navigate("/login")
         }).catch(async(error)=>{
-            console.log("main error",error.response.data.messages);
+            console.log("main error",error.response);
             let errorMessages = error.response.data.message;
 
             if(errorMessages.includes ("user already exisis")){

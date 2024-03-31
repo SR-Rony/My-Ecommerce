@@ -1,36 +1,76 @@
-import React from 'react'
-import Heading from '../heading/Heading'
-import Paragraph from '../paragraph/Paragraph'
-import Button from '../button/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { activeUser } from '../../fetures/users/userSlice'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+// 
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { Menu, Switch } from 'antd';
+import { useSelector } from 'react-redux';
+// 
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
 
 const ActiveUser = () => {
-
   const user = useSelector((state)=>(state.user.value))
-  let dispatch = useDispatch()
-  let navigate = useNavigate()
 
-    const handleLogout =()=>{
-      localStorage.removeItem('user')
-      dispatch(activeUser(null))
-      navigate("/login")
-    }
+  const items = [
+    user.isAdmin &&
+    getItem('User', 'sub1', <MailOutlined />, [
+      getItem('Merchant', '1'),
+      getItem('User', '2'),
+    ]),
+    getItem('Product', 'sub2', <AppstoreOutlined />, [
+      getItem('Add Product', '5'),
+      getItem('Vew Product', '6'),
+    ]),
+    getItem('Category', 'sub4', <SettingOutlined />, [
+      getItem('Add Category', '9'),
+      getItem('Add Subcategory', '10'),
+      getItem('Vew Category', '11'),
+      getItem('Vew Subcategory', '12'),
+    ]),
+    getItem('Discount', 'sub5', <SettingOutlined />, [
+      getItem('Add Discount', '13'),
+      getItem('Vew Discount', '14'),
+    ]),
+  ];
+
+  const [theme, setTheme] = useState('dark');
+  const [current, setCurrent] = useState('1');
+  const changeTheme = (value) => {
+    setTheme(value ? 'dark' : 'light');
+  };
+  const onClick = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
 
   return (
-    <div className='bg-secoundary w-full h-[90vh] p-2 grid grid-rows-12 rounded-md '>
-        <div className='row-span-10'>
-            <Heading className="text-3xl border-b border-primary pb-2" tag="h2" span="Active User"/>
-            <div className='ring ring-primary rounded-full w-28 h-28 mx-auto my-4'>
-
-            </div>
-            <Paragraph className="text-white text-2xl font-bold mb-5" text={user.name}/>
-        </div>
-        <div className='row-span-2'>
-            <Button onClick={handleLogout} text="Logout"/>
-        </div>
-    </div>
+    <div className='w-full'>
+    <Switch
+      checked={theme === 'dark'}
+      onChange={changeTheme}
+      checkedChildren="Dark"
+      unCheckedChildren="Light"
+    />
+    <br />
+    <br />
+    <Menu
+      theme={theme}
+      onClick={onClick}
+      style={{
+        width: 256,
+      }}
+      defaultOpenKeys={['sub1']}
+      selectedKeys={[current]}
+      mode="inline"
+      items={items}
+    />
+  </div>
   )
 }
 

@@ -136,10 +136,16 @@ const postLogin =async(req,res)=>{
         if(user){
             bcrypt.compare(password, user.password, (err, result)=>{
                 if(result===true){
-                    res.status(200).send("user is valid ")
-                    console.log('valid user');
+                    res.status(200).send({
+                        success:true,
+                        message:'valid user',
+                        data:user
+                    })
                 }else{
-                    res.status(400).send({message:"invalid password"})
+                    res.status(400).send({
+                        success:false,
+                        message:"invalid password"
+                    })
                 }
             })
             

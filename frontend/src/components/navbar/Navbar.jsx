@@ -2,9 +2,24 @@ import React from 'react'
 import List from '../list/List'
 import ListItem from '../list/ListItem'
 import Button from '../button/Button'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { activeUser } from '../../fetures/users/userSlice'
 // import { Button } from 'antd'
 
 const Navbar = () => {
+
+    const user = useSelector((state)=>(state.user.value))
+    let dispatch = useDispatch()
+    let navigate = useNavigate()
+
+    const handleLogout =()=>{
+      localStorage.removeItem('user')
+      dispatch(activeUser(null))
+      navigate("/login")
+    }
+
+
   return (
     <nav className='flex justify-between items-center py-2 px-5 shadow-md'>
         <div>
@@ -23,7 +38,7 @@ const Navbar = () => {
             <ListItem text="Home"/>
         </List>
         <div >
-            <Button text="Logout"/>
+            <Button onClick={handleLogout} text="Logout"/>
         </div>
     </nav>
   )
