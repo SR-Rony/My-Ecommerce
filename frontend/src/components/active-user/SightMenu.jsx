@@ -14,9 +14,10 @@ function getItem(label, key, icon, children, type) {
   };
 }
 
-const ActiveUser = () => {
+const SightMenu = () => {
+  // user data
   const user = useSelector((state)=>(state.user.value))
-
+  // menu item
   const items = [
     user.isAdmin &&
     getItem('User', 'sub1', <MailOutlined />, [
@@ -39,18 +40,19 @@ const ActiveUser = () => {
     ]),
   ];
 
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [current, setCurrent] = useState('1');
   const changeTheme = (value) => {
     setTheme(value ? 'dark' : 'light');
   };
+  // onclick function
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
   };
 
   return (
-    <div className='w-full'>
+    <div className=''>
     <Switch
       checked={theme === 'dark'}
       onChange={changeTheme}
@@ -63,7 +65,7 @@ const ActiveUser = () => {
       theme={theme}
       onClick={onClick}
       style={{
-        width: 256,
+        width: "100%",
       }}
       defaultOpenKeys={['sub1']}
       selectedKeys={[current]}
@@ -74,4 +76,4 @@ const ActiveUser = () => {
   )
 }
 
-export default ActiveUser
+export default SightMenu

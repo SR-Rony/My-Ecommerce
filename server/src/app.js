@@ -1,18 +1,20 @@
 const express = require("express")
 const cors = require("cors")
 const app = express()
-const userRouter = require("./routers/userRouter")
+const userRoute = require("./routes/userRoute")
+const productRoute = require("./routes/productRoute")
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 app.use(cors())
 
-app.use("/api/user",userRouter)
+app.use("/api/user",userRoute)
+app.use("/api/product",productRoute)
 
 
 app.get("/",(req,res)=>{
-    res.send('welcome to my todo list')
+    res.send('welcome to my Ecommerce')
 })
 
 

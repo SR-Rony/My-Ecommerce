@@ -73,9 +73,10 @@ const Register = () => {
 
 
   return (
-   <div className=''>
-    <Heading className='text-3xl mb-10' tag='h1' text="Get started with easily " span="register"/>
-    <Form className='mx-auto w-1/2 pr-32'
+   <div className='flex justify-center items-center h-screen'>
+    <div className='p-5 shadow-lg ring-1 ring-primary rounded-md'>
+      <Heading className='text-3xl mb-10' tag='h1' text="Get started with easily " span="register"/>
+      <Form className='mx-auto pr-32'
       name="basic"
       labelCol={{
         span: 8,
@@ -90,7 +91,7 @@ const Register = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item className=''
+      <Form.Item
         label="name"
         name="name"
         rules={[
@@ -143,8 +144,9 @@ const Register = () => {
       : <Button className='bg-primary' type="primary" htmlType="submit"> Submit</Button>
       }
       </Form.Item>
-    </Form>
-    <p>Already have an acount ? <Link className='text-primary' to='/login'>Login</Link></p>
+      </Form>
+      <p className='text-center'>Already have an acount ? <Link className='text-primary' to='/login'>Login</Link></p>
+    </div>
   </div>
   )
 }
