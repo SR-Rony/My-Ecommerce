@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verification from './pages/Verification';
 import ForgotPassword from './pages/ForgotPassword';
 import NewPassword from './pages/NewPassword';
+import AddCategory from './pages/AddCategory';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/newpassword/:token' element={<NewPassword />}/>
         <Route path="/" element={<Root />}>
           <Route path='/home' element={<Home />}/>
+          <Route path='/add_category' element={<AddCategory />}/>
         </Route>
       </Route>
     )

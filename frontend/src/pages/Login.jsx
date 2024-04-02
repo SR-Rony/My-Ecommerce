@@ -16,19 +16,10 @@ const Login = () => {
   let navigate = useNavigate()
   let dispatch = useDispatch()
 
-  const [users,setUsers]=useState([])
-
     useEffect(()=>{
       if(user){
         navigate("/home")
       }
-
-        // const usersFun=async()=>{
-        //     const allUser = await axios.get("http://localhost:3001/api/user")
-        //     let users =allUser.data.users
-        //     setUsers(users)
-        // }
-        // usersFun()
     },[])
 
   const onFinish = async(values) => {

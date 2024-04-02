@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu, Switch } from 'antd';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // 
 function getItem(label, key, icon, children, type) {
   return {
@@ -18,6 +19,7 @@ const SightMenu = () => {
   // user data
   const user = useSelector((state)=>(state.user.value))
   // menu item
+  let navigate = useNavigate()
   const items = [
     user.isAdmin &&
     getItem('User', 'sub1', <MailOutlined />, [
@@ -29,7 +31,7 @@ const SightMenu = () => {
       getItem('Vew Product', '6'),
     ]),
     getItem('Category', 'sub4', <SettingOutlined />, [
-      getItem('Add Category', '9'),
+      getItem('Add Category', 'add_category'),
       getItem('Add Subcategory', '10'),
       getItem('Vew Category', '11'),
       getItem('Vew Subcategory', '12'),
@@ -48,6 +50,7 @@ const SightMenu = () => {
   // onclick function
   const onClick = (e) => {
     console.log('click ', e);
+    navigate(e.key)
     setCurrent(e.key);
   };
 
