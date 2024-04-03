@@ -1,6 +1,20 @@
 const Category = require("../models/catModel")
 
 
+
+const getCategory = async(req,res)=>{
+    try{
+        const allCategory = await Category.find()
+        res.status(200).send({
+        success:true,
+        message:"all subcategory show",
+        cat:allCategory
+        })
+    }catch(err){
+        console.log(err);
+    }
+}
+
 // create product category
 const createcategory = async(req,res)=>{
     try{
@@ -25,4 +39,4 @@ const createcategory = async(req,res)=>{
     }
 }
 
-module.exports = {createcategory}
+module.exports = {createcategory,getCategory}

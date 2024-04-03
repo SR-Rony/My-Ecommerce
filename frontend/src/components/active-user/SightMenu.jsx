@@ -31,8 +31,8 @@ const SightMenu = () => {
       getItem('Vew Product', '6'),
     ]),
     getItem('Category', 'sub4', <SettingOutlined />, [
-      getItem('Add Category', 'add_category'),
-      getItem('Add Subcategory', '10'),
+      getItem('Add Category', 'addcategory'),
+      getItem('Add Subcategory', 'subcategory'),
       getItem('Vew Category', '11'),
       getItem('Vew Subcategory', '12'),
     ]),

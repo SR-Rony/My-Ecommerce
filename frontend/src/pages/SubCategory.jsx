@@ -1,21 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../components/heading/Heading';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input,Select  } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const AddCategory = () => {
+const SubCategory = () => {
 
     const user = useSelector((state)=>(state.user.value))
+    console.log(user._id);
 
     const [loading, setLoading] = useState(false);
+    const [categoryList, setCategoryList] = useState([]);
+    const [categoryId, setCategoryId] = useState("");
+
+    useEffect(()=>{
+      async function allCat() {
+         let categoryData = await axios.get("http://localhost:3001/api/product/allcategory")
+         // console.log(categoryData.data.cat);
+         let array =[]
+         categoryData.data.cat.map((item)=>{
+           array.push(
+             {
+               value: item._id,
+               label: item.name,
+             },
+           )
+         })
+         setCategoryList(array)
+       }
+       allCat()
+     },[])
+
+    // /////////
 
     const onFinish = async(values) => {
         console.log(values);
         try{
-          const data = await axios.post("http://localhost:3001/api/product/createcategory",{
+          const data = await axios.post("http://localhost:3001/api/product/subcategory",{
             name:values.name,
+            catId:categoryId,
             ownerId:user._id
           })
           // console.log(data.data.message);
@@ -36,7 +60,21 @@ const AddCategory = () => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
         setLoading(false)
-      };  
+      };    
+
+      // ////////
+      const onChange = (value) => {
+        console.log(`selected ${value}`);
+        setCategoryId(value)
+      };
+      const onSearch = (value) => {
+        console.log('search:', value);
+      };
+      
+      // Filter `option.label` match the user type `input`
+      const filterOption = (input, option) =>
+        (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
 
   return (
     <div className='flex justify-center items-center h-[80vh]'>
@@ -58,7 +96,7 @@ const AddCategory = () => {
         autoComplete="off"
       >
         <Form.Item
-          label="category name:"
+          label="subcategory name:"
           name="name"
           rules={[
             {
@@ -70,6 +108,16 @@ const AddCategory = () => {
         >
           <Input className='ml-4' />
         </Form.Item>
+
+        <Select
+        showSearch
+        placeholder="Select a person"
+        optionFilterProp="children"
+        onChange={onChange}
+        onSearch={onSearch}
+        filterOption={filterOption}
+        options={categoryList}
+      />
 
         <Form.Item
           wrapperCol={{
@@ -88,4 +136,4 @@ const AddCategory = () => {
   )
 }
 
-export default AddCategory
+export default SubCategory
