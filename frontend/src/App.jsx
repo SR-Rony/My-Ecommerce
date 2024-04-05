@@ -18,6 +18,7 @@ import NewPassword from './pages/NewPassword';
 import AddCategory from './pages/AddCategory';
 import SubCategory from './pages/SubCategory';
 import VewCategory from './pages/VewCategory';
+import AddProduct from './pages/AddProduct';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/addcategory' element={<AddCategory />}/>
           <Route path='/subcategory' element={<SubCategory />}/>
           <Route path='/vewcategory' element={<VewCategory />}/>
+          <Route path='/addproduct' element={<AddProduct />}/>
         </Route>
       </Route>
     )

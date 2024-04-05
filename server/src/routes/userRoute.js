@@ -1,6 +1,5 @@
 const express = require("express")
 const { getUser, postUser, postLogin, verifyUser, forgotPassword, newPassword } = require("../controller/usersController")
-const upload = require("../middlewares/fileUplod")
 const router = express.Router()
 
 router.get("/",getUser)
