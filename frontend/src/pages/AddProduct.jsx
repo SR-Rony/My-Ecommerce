@@ -14,28 +14,34 @@ const AddProduct = () => {
     const [loading, setLoading] = useState(false);
     const [discription, setDiscritption] = useState('');
     const [images, setImages] = useState({});
+    console.log(images);
 
 
     const onFinish = async(values) => {
-        console.log(values);
         try{
           const data = await axios.post("http://localhost:3001/api/product",{
             name:values.name,
             description:discription,
-            images:"img"
-          })
+            images:images
+          },
+          {
+            headers:{
+              "Content-Type":"multipart/form-data"
+            }
+          }
+        )
           console.log("data",data);
           // console.log(data.data.message);
-          toast.error(data.data.message, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error(data.data.message, {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
         }catch(error){
           console.error(error)
         }

@@ -3,21 +3,26 @@ const Product = require("../models/productModel")
 // create product
 const createProduct =async(req,res)=>{
     try{
-        let {name,description,images}=req.body
-        console.log(name,description,images);
+        let {name,description,}=req.body
+        console.log(`/public/images/${req.file.filename}`);
         const product = new Product({
             name:name,
             description:description,
-            images:images
+            images:`/public/images/${req.file.filename}`
         })
         await product.save();
-        // res.send({
-        //     success:true,
-
-        // })
+        res.send({
+            success:true,
+            messages:"new product create",
+            data:product
+        })
        
     }catch(err){
         console.log(err);
+        res.send({
+            success:false,
+            messages:"new product not create",
+        })
     }
 }
 module.exports ={createProduct}

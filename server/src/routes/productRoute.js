@@ -3,10 +3,25 @@ const { createcategory, getCategory } = require("../controller/createCategoryCon
 const {subCategory,} = require("../controller/subCategoryController")
 const { createProduct } = require("../controller/productcontroller")
 const router = express.Router()
+const upload = require("../middlewares/uplodFile")
+// const multer = require("multer")
+
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, "./uploads")
+//     },
+//     filename: function (req, file, cb) {
+//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//       cb(null, file.fieldname + '-' + uniqueSuffix)
+//     }
+//   })
+  
+//   const upload = multer({ storage: storage })
 
 
 // product
-router.post("/",createProduct)
+router.post("/",upload.single("images"),createProduct)
 
 // category
 router.post("/createcategory",createcategory)
