@@ -12,6 +12,17 @@ const productSchema = new Schema({
     },
     images :{
         type:String
+    },
+    regularprice:{
+        type:String,
+        required:[true,"regularprice name is require"],
+    },
+    saleprice:{
+        type:String
+    },
+    slug:{
+        type:String,
+        required:[true,"slug name is require"],
     }
 
 

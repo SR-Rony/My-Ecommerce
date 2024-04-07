@@ -6,55 +6,58 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import slugify from 'react-slugify';
 
 const AddProduct = () => {
+  const user = useSelector((state)=>(state.user.value))
+  
+  
+  const [slugText,setSlugText]=useState("")
+  const [loading, setLoading] = useState(false);
+  const [discription, setDiscritption] = useState('');
+  const [images, setImages] = useState({});
 
-    const user = useSelector((state)=>(state.user.value))
-
-    const [loading, setLoading] = useState(false);
-    const [discription, setDiscritption] = useState('');
-    const [images, setImages] = useState({});
-    console.log(images);
-
-
-    const onFinish = async(values) => {
-        try{
-          const data = await axios.post("http://localhost:3001/api/product",{
-            name:values.name,
-            description:discription,
-            images:images
-          },
-          {
-            headers:{
-              "Content-Type":"multipart/form-data"
-            }
+  const onFinish = async(values) => {
+      try{
+        const data = await axios.post("http://localhost:3001/api/product",{
+          name:values.name,
+          description:discription,
+          images:images,
+          regularprice:values.regularprice,
+          saleprice:values.saleprice,
+          slug:slugText
+        },
+        {
+          headers:{
+            "Content-Type":"multipart/form-data"
           }
-        )
-          console.log("data",data);
-          // console.log(data.data.message);
-          // toast.error(data.data.message, {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "dark",
-          // });
-        }catch(error){
-          console.error(error)
         }
-    }
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-        setLoading(false)
-      };  
-
-      const handleImages =(e)=>{
-        console.log("images",e.target.files[0]);
-        setImages(e.target.files[0])
+      )
+        console.log("data",data);
+        // console.log(data.data.message);
+        // toast.error(data.data.message, {
+        //   position: "top-right",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+      }catch(error){
+        console.error(error)
       }
+  }
+  const onFinishFailed = (errorInfo) => {
+      console.log('Failed:', errorInfo);
+      setLoading(false)
+  };  
+
+  const handleImages =(e)=>{
+    console.log("images",e.target.files[0]);
+    setImages(e.target.files[0])
+  }
 
   return (
     <div className='flex justify-center items-center h-[80vh]'>
@@ -86,7 +89,7 @@ const AddProduct = () => {
             {type:"text"}
           ]}
         >
-          <Input className='ml-4' />
+          <Input onChange={(e)=>setSlugText(e.target.value)} className='ml-4' />
         </Form.Item>
         <CKEditor
                     editor={ ClassicEditor }
@@ -119,6 +122,47 @@ const AddProduct = () => {
         >
           <Input onChange={handleImages} type='file' />
         </Form.Item>
+        <Form.Item
+          label="regular Price"
+          name="regularprice"
+          rules={[
+            {
+              required: true,
+              message: 'Please inter your regular Price ',
+            },
+            {type:"text"}
+          ]}
+        >
+          <Input className='ml-4' />
+        </Form.Item>
+        <Form.Item
+          label="sale Price"
+          name="saleprice"
+          rules={[
+            {
+              required: true,
+              message: 'Please inter your sale Price ',
+            },
+            {type:"text"}
+          ]}
+        >
+          <Input className='ml-4' />
+        </Form.Item>
+        {/* <Form.Item
+          label="slug"
+          name="slug"
+          rules={[
+            {
+              required: true,
+              message: 'Please inter your slug ',
+            },
+            {type:"text"}
+          ]}
+        >
+          <Input defaultValue={slugify(slugText)} disabled className='ml-4' />
+        </Form.Item> */}
+        <label htmlFor="">Slug : </label>
+        <input className='ring-1 ring-secoundary w-1/2 rounded-md p-2 m-3' disabled value={slugify(slugText)} type="text" />
 
         <Form.Item
           wrapperCol={{

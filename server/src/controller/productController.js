@@ -3,12 +3,15 @@ const Product = require("../models/productModel")
 // create product
 const createProduct =async(req,res)=>{
     try{
-        let {name,description,}=req.body
+        let {name,description,regularprice,saleprice,slug}=req.body
         console.log(`/public/images/${req.file.filename}`);
         const product = new Product({
             name:name,
             description:description,
-            images:`/public/images/${req.file.filename}`
+            images:`/public/images/${req.file.filename}`,
+            regularprice:regularprice,
+            saleprice:saleprice,
+            slug:slug
         })
         await product.save();
         res.send({
