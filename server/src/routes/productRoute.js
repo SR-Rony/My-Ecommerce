@@ -1,7 +1,7 @@
 const express = require("express")
 const { createcategory, getCategory } = require("../controller/createCategoryController")
 const {subCategory,} = require("../controller/subCategoryController")
-const { createProduct } = require("../controller/productcontroller")
+const { createProduct, vewProduct } = require("../controller/productcontroller")
 const router = express.Router()
 const upload = require("../middlewares/uplodFile")
 // const multer = require("multer")
@@ -22,6 +22,7 @@ const upload = require("../middlewares/uplodFile")
 
 // product
 router.post("/",upload.single("images"),createProduct)
+router.get("/",vewProduct)
 
 // category
 router.post("/createcategory",createcategory)

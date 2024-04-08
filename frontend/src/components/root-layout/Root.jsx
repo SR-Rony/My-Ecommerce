@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../navbar/Navbar'
-import SightMenu from '../active-user/SightMenu'
+import SightMenu from '../sightmenu/SightMenu'
 
 const Root = () => {
   return (

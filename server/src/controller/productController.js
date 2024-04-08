@@ -1,5 +1,21 @@
 const Product = require("../models/productModel")
 
+
+// vew all product
+const vewProduct =async(req,res)=>{
+    try{
+        const allProduct = await Product.find()
+        res.status(201).send({
+            success:true,
+            message:"vew all product",
+            data:allProduct
+        })
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
 // create product
 const createProduct =async(req,res)=>{
     try{
@@ -28,4 +44,4 @@ const createProduct =async(req,res)=>{
         })
     }
 }
-module.exports ={createProduct}
+module.exports ={createProduct,vewProduct}

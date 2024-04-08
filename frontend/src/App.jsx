@@ -19,6 +19,9 @@ import AddCategory from './pages/AddCategory';
 import SubCategory from './pages/SubCategory';
 import VewCategory from './pages/VewCategory';
 import AddProduct from './pages/AddProduct';
+import VewProduct from './pages/VewProduct';
+import AddVariant from './pages/AddVariant';
+import VewVariant from './pages/VewVariant';
 
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
           <Route path='/subcategory' element={<SubCategory />}/>
           <Route path='/vewcategory' element={<VewCategory />}/>
           <Route path='/addproduct' element={<AddProduct />}/>
+          <Route path='/vewproduct' element={<VewProduct />}/>
+          <Route path='/addvariant' element={<AddVariant />}/>
+          <Route path='/vewvariant' element={<VewVariant />}/>
         </Route>
       </Route>
     )

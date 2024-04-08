@@ -28,7 +28,9 @@ const SightMenu = () => {
     ]),
     getItem('Product', 'sub2', <AppstoreOutlined />, [
       getItem('Add Product', 'addproduct'),
-      getItem('Vew Product', '6'),
+      getItem('Vew Product', 'vewproduct'),
+      getItem('Add Variant', 'addvariant'),
+      getItem('Vew Variant', 'vewvariant'),
     ]),
     getItem('Category', 'sub4', <SettingOutlined />, [
       getItem('Add Category', 'addcategory'),
