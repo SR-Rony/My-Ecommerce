@@ -1,30 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../components/heading/Heading';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button,Form, Input,Select } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import slugify from 'react-slugify';
 
 const AddVariant = () => {
   const user = useSelector((state)=>(state.user.value))
   
   
-  const [slugText,setSlugText]=useState("")
   const [loading, setLoading] = useState(false);
-  const [discription, setDiscritption] = useState('');
+  const [productList, setProductList] = useState([]);
+  const [productId,setProductId]=useState("")
   const [images, setImages] = useState({});
+
+  useEffect(()=>{
+   async function productVew() {
+      let allProduct = await axios.get("http://localhost:3001/api/product")
+      let array =[]
+      allProduct.data.data.map((item)=>{
+        array.push({
+          value:item._id,
+          label:item.name,
+        })
+      })
+      setProductList(array)
+    }
+    productVew()
+  },[])
 
   const onFinish = async(values) => {
       try{
-        const data = await axios.post("http://localhost:3001/api/product",{
+        const data = await axios.post("http://localhost:3001/api/product/provariant",{
           name:values.name,
-          description:discription,
           images:images,
           regularprice:values.regularprice,
           saleprice:values.saleprice,
-          slug:slugText
+          productId:productId
         },
         {
           headers:{
@@ -32,8 +44,9 @@ const AddVariant = () => {
           }
         }
       )
+      console.log('form all data',data)
       }catch(error){
-        console.error(error)
+        console.error("error data",error)
       }
   }
   const onFinishFailed = (errorInfo) => {
@@ -42,9 +55,13 @@ const AddVariant = () => {
   };  
 
   const handleImages =(e)=>{
-    console.log("images",e.target.files[0]);
     setImages(e.target.files[0])
   }
+
+  // handle select
+  const handleChange = (value) => {
+    setProductId(value)
+  };
 
   return (
     <div className='flex justify-center items-center h-[80vh]'>
@@ -76,7 +93,7 @@ const AddVariant = () => {
             {type:"text"}
           ]}
         >
-          <Input onChange={(e)=>setSlugText(e.target.value)} className='ml-4' />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Product image"
@@ -117,6 +134,15 @@ const AddVariant = () => {
         >
           <Input className='ml-4' />
         </Form.Item>
+        <Select
+      defaultValue=""
+        style={{
+          width: 120,
+        }}
+        onChange={handleChange}
+        options={productList}
+    />
+
         <Form.Item
           wrapperCol={{
             offset: 8,
