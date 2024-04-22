@@ -13,8 +13,13 @@ const columns = [
     },
     {
       title: 'Images',
-      dataIndex: 'Images',
-      key: 'Images',
+      dataIndex: "images",
+      key: 'images',
+      render: (_,record)=>(
+        <Space size={"middle"}>
+           <img style={{width:"50px"}} src={`http://localhost:3001${_}`}/>
+        </Space>
+      ),
     },
     {
       title: 'Regular Price',
@@ -42,6 +47,7 @@ const columns = [
 
 const VewProduct = () => {
     const [product,setProduct]= useState([])
+    console.log(product);
 
     useEffect(()=>{
        async function vewProduct() {
