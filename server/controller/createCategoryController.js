@@ -3,8 +3,8 @@ const Category = require("../models/catModel")
 
 
 const getCategory = async(req,res)=>{
-    try{
-        const allCategory = await Category.find()
+    try{    
+        const allCategory = await Category.find().populate("ownerId")
         res.status(200).send({
         success:true,
         message:"all subcategory show",

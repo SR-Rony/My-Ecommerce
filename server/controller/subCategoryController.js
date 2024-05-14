@@ -1,5 +1,21 @@
 const Subcategory = require("../models/subCatModel")
 
+// create product category
+const vewSubCategory = async(req,res)=>{
+    console.log("ami category id",req.query.id);
+    let id = req.query.id
+    try{
+        // const subcategory = await Subcategory.find()
+        const subcategory = await Subcategory.find({catId:id}).populate("ownerId")
+        res.send({
+            success:true,
+            message:"Vew all subcategory",
+           subCategory:subcategory
+        })
+    }catch(err){
+        console.log(err);
+    }
+}
 
 // create product category
 const subCategory = async(req,res)=>{
@@ -27,4 +43,4 @@ const subCategory = async(req,res)=>{
 }
 
 
-module.exports = {subCategory}
+module.exports = {subCategory,vewSubCategory}

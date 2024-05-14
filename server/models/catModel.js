@@ -9,7 +9,7 @@ const categorySchema = new Schema({
     },
     ownerId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"Users"
     },
     status :{
         type:String,

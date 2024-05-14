@@ -1,7 +1,22 @@
+import Link from 'next/link'
 import React from 'react'
 
-export const Categoriy = () => {
+
+async function getData() {
+    const res = await fetch('http://localhost:3001/api/product/allcategory')
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+   
+    return res.json()
+  }
+   
+
+export const Categoriy = async() => {
+    const data = await getData()
   return (
-    <div>categoriy</div>
+    data.cat.map((item)=>(
+        <div><Link href={`/category/${item._id}`}>{item.name}---{item.ownerId.name}</Link></div>
+    ))
   )
 }
