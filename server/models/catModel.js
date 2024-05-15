@@ -15,8 +15,11 @@ const categorySchema = new Schema({
         type:String,
         enum:["pandding","rejecated","approved"],
         default:"pandding"
-    }
-
+    },
+    subCatList:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Subcategory"
+    }]
 
 }) 
 

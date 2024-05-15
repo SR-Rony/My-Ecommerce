@@ -1,8 +1,8 @@
 const Subcategory = require("../models/subCatModel")
+const Category = require("../models/catModel")
 
 // create product category
 const vewSubCategory = async(req,res)=>{
-    console.log("ami category id",req.query.id);
     let id = req.query.id
     try{
         // const subcategory = await Subcategory.find()
@@ -31,6 +31,10 @@ const subCategory = async(req,res)=>{
             ownerId:ownerId
            })
            newSubCategory.save()
+
+          await Category.findByIdAndUpdate({_id:catId},{$push : {subCatList:newSubCategory._id}})
+
+
            res.send({
             success:true,
             message:"subcategory create. Wat for admin approval",

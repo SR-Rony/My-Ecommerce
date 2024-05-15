@@ -1,7 +1,7 @@
 const express = require("express")
 const { createcategory, getCategory } = require("../controller/createCategoryController")
 const {subCategory, vewSubCategory,} = require("../controller/subCategoryController")
-const { createProduct, vewProduct } = require("../controller/productcontroller")
+const { createProduct, vewProduct } = require("../controller/productController")
 const router = express.Router()
 const upload = require("../middlewares/uplodFile")
 const { createProVariant } = require("../controller/proVariantController")

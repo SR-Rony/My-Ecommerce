@@ -4,7 +4,7 @@ const Category = require("../models/catModel")
 
 const getCategory = async(req,res)=>{
     try{    
-        const allCategory = await Category.find().populate("ownerId")
+        const allCategory = await Category.find().populate("subCatList")
         res.status(200).send({
         success:true,
         message:"all subcategory show",
@@ -28,6 +28,7 @@ const createcategory = async(req,res)=>{
             ownerId:ownerId
            })
            newCategory.save()
+
            res.send({
             success:true,
             message:"category create. Wat for admin approval",
