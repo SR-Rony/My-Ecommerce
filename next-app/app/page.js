@@ -1,6 +1,6 @@
 import { Categoriy } from "@/components/categoriy";
 import styles from "./page.module.css";
-import Product from "@/components/product";
+import { Product } from "@/components/product";
 
 export default function Home() {
   return (
