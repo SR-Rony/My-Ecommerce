@@ -16,7 +16,16 @@ export const Categoriy = async() => {
     const data = await getData()
   return (
     data.cat.map((item)=>(
-        <div><Link href={`/category/${item._id}`}>{item.name}---{item.ownerId.name}</Link></div>
+        <ul className='list'>
+          <li className='item'><Link href={`/category/${item._id}`}>{item.name}</Link> </li>
+          {item.subCatList.length>0 &&
+            <ul className='list-item'>
+              {item.subCatList.map(categoriItem=><li>{categoriItem.name}</li>)}
+            </ul>
+          }
+          
+
+        </ul>
     ))
   )
 }

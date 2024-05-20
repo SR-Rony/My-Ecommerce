@@ -1,0 +1,8 @@
+.list .list-item{
+    display: none;
+    background-color: aqua;
+}
+.list:hover .list-item{
+    display: block;
+
+}
