@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { Col, Container, Row } from 'react-bootstrap'
 
 
 async function getData() {
@@ -14,22 +15,29 @@ async function getData() {
 
 export const Product = async() => {
     const data = await getData()
-    console.log(data.data);
   return (
-    data.data.map((item)=>(
-        <div>
-            <h2>{item.name}</h2>
-            <Image
-                src={`http://localhost:3001${item.images}`}
-                width={500}
-                height={500}
-                alt="Picture of the author"
-            />
-            {item.saleprice 
-                ? <div><span><del>{item.regularprice}</del></span> <span>{item.saleprice}</span></div>
-                : <p>{item.saleprice}</p>
+    <section>
+      <Container>
+        <Row>
+            {
+              data.data.map((item)=>(
+                <Col>
+                    <h2>{item.name}</h2>
+                    <Image
+                        src={`http://localhost:3001${item.images}`}
+                        width={500}
+                        height={500}
+                        alt="Picture of the author"
+                    />
+                    {item.saleprice 
+                        ? <div><span><del>{item.regularprice}</del></span> <span>{item.saleprice}</span></div>
+                        : <p>{item.saleprice}</p>
+                    }
+                </Col>
+              ))
             }
-        </div>
-    ))
+        </Row>
+      </Container>
+    </section>
   )
 }
