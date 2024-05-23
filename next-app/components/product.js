@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Col, Container, Row } from 'react-bootstrap'
+import ProductCart from './productCart'
 
 
 async function getData() {
@@ -21,18 +22,23 @@ export const Product = async() => {
         <Row>
             {
               data.data.map((item)=>(
-                <Col>
-                    <h2>{item.name}</h2>
-                    <Image
+                <Col lg={3}>
+                  <ProductCart item ={item} />
+
+
+
+
+                    {/* <h2>{item.name}</h2> */}
+                    {/* <Image
                         src={`http://localhost:3001${item.images}`}
-                        width={500}
-                        height={500}
+                        width={300}
+                        height={200}
                         alt="Picture of the author"
                     />
                     {item.saleprice 
                         ? <div><span><del>{item.regularprice}</del></span> <span>{item.saleprice}</span></div>
                         : <p>{item.saleprice}</p>
-                    }
+                    } */}
                 </Col>
               ))
             }

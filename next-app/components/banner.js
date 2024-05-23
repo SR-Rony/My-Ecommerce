@@ -8,10 +8,9 @@ export const Banner = () => {
     <Carousel>
         <Carousel.Item>
         <Image
-        src="http://localhost:3001/public/images/1712636354889-667660149.png"
-        width={1300}
-        height={500}
-        alt="Picture of the author"
+        src="http://localhost:3001/public/images/1716400331848-82473147.jpg"
+        width={1420}
+        height={400}
         />
         <Carousel.Caption>
             <h3>First slide label</h3>
@@ -20,10 +19,9 @@ export const Banner = () => {
         </Carousel.Item>
         <Carousel.Item>
         <Image
-        src="http://localhost:3001/public/images/1712636354889-667660149.png"
-        width={1300}
-        height={500}
-        alt="Picture of the author"
+        src="http://localhost:3001/public/images/1716400331848-82473147.jpg"
+        width={1420}
+        height={400}
         />
         <Carousel.Caption>
             <h3>Second slide label</h3>
@@ -32,10 +30,10 @@ export const Banner = () => {
         </Carousel.Item>
         <Carousel.Item>
             <Image
-            src="http://localhost:3001/public/images/1712636354889-667660149.png"
-            width={1300}
-            height={500}
-            alt="Picture of the author"
+            width={1420}
+            height={400}
+            src="http://localhost:3001/public/images/1716400331848-82473147.jpg"
+            
             />
         <Carousel.Caption>
             <h3>Third slide label</h3>
