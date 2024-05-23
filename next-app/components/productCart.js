@@ -4,7 +4,21 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function ProductCart({item}) {
-    console.log(item);
+
+  const handleAddCard = async(item)=>{
+      fetch('http://localhost:3001/api/product/card', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              productId: item._id,
+              ownerId: '660a2c4a4ed034ffdc295eab',
+              quantity: 1
+            }),
+        })
+        .then(res=>res.json())
+  }
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={`http://localhost:3001${item.images}`} />
@@ -19,7 +33,7 @@ function ProductCart({item}) {
             : <p>{item.saleprice}</p>
         }
         </Card.Text>
-        <Button variant="primary">Add to cart</Button>
+        <Button onClick={()=> handleAddCard(item)} variant="primary">Add to cart</Button>
       </Card.Body>
     </Card>
   );

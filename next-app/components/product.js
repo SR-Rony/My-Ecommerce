@@ -24,21 +24,6 @@ export const Product = async() => {
               data.data.map((item)=>(
                 <Col lg={3}>
                   <ProductCart item ={item} />
-
-
-
-
-                    {/* <h2>{item.name}</h2> */}
-                    {/* <Image
-                        src={`http://localhost:3001${item.images}`}
-                        width={300}
-                        height={200}
-                        alt="Picture of the author"
-                    />
-                    {item.saleprice 
-                        ? <div><span><del>{item.regularprice}</del></span> <span>{item.saleprice}</span></div>
-                        : <p>{item.saleprice}</p>
-                    } */}
                 </Col>
               ))
             }

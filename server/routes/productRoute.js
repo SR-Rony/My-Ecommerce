@@ -5,7 +5,7 @@ const { createProduct, vewProduct } = require("../controller/productController")
 const router = express.Router()
 const upload = require("../middlewares/uplodFile")
 const { createProVariant } = require("../controller/proVariantController")
-const { addCard } = require("../controller/cardController")
+const { addCard, vewCard } = require("../controller/cardController")
 
 // product
 router.post("/",upload.single("images"),createProduct)
@@ -21,5 +21,6 @@ router.post("/subcategory",subCategory)
 router.get("/allsubcategory",vewSubCategory)
 // product cart
 router.post("/card",addCard)
+router.get("/card",vewCard)
 
 module.exports = router
