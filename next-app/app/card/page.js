@@ -18,9 +18,9 @@ async function getData() {
 const Card =async () => {
     const data = await getData()
 
-    const handleClick =(id,type)=>{
-        console.log("click hosse");
-        fetch(`http://localhost:3001/api/product/card?type=${type}`, {
+    const handleClick =async(id,type)=>{
+        console.log("click hosse",id,type);
+      const respons =   await fetch(`http://localhost:3001/api/product/card?type=${type}`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -29,8 +29,9 @@ const Card =async () => {
               productId: id,
             }),
         })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
+        const content = await respons.json()
+        // .then(res=>res.json())
+        // .then(data=>console.log(data))
     }
 
   return (
@@ -58,9 +59,13 @@ const Card =async () => {
                 />
                 </td>
                 <td>{item.productId.name}</td>
-                <td> <button onClick={()=>handleClick(item.productId._id,{type:"incre"})}>+</button>{item.quantity}<button onClick={()=>handleClick(item.productId._id,{type:"dicre"})}>-</button></td>
+                <td> 
+                  <button onClick={()=>handleClick(item.productId._id,"incre")}>+</button>
+                  {item.quantity}
+                  <button onClick={()=>handleClick(item.productId._id,"dicre")}>-</button>
+                </td>
                 <td>{item.productId.saleprice ? item.productId.saleprice :item.productId.regularprice }</td>
-                <td>{item.productId.saleprice ? item.productId.saleprice :item.productId.regularprice }</td>
+                <td>{item.productId.saleprice ? item.productId.saleprice *item.quantity :item.productId.regularprice*item.quantity }</td>
                 </tr>
             ))}
             </tbody>

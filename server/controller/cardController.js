@@ -3,12 +3,16 @@ const Card = require("../models/cardModel");
 
 const addCard = async(req,res)=>{
     const {productId,ownerId,quantity} = req.body
-    console.log(req.body);
+    console.log(req.query);
     let existProductCard = await Card.find({productId:productId});
 
     if((existProductCard).length > 0){
-        let data = await Card.findByIdAndUpdate({_id:existProductCard[0]._id},{quantity:existProductCard[0].quantity + 1},{new:true})
-       return res.send(data)
+      if(req.query.type=="incre"){
+        await Card.findByIdAndUpdate({_id:existProductCard[0]._id},{quantity:existProductCard[0].quantity + 1},{new:true})
+        
+      }else{
+        await Card.findByIdAndUpdate({_id:existProductCard[0]._id},{quantity:existProductCard[0].quantity - 1},{new:true})
+      }
     }else{
         let card = new Card({
             productId: productId,

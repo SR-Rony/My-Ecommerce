@@ -2,8 +2,10 @@
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useRouter } from 'next/navigation'
 
 function ProductCart({item}) {
+  const router = useRouter()
 
   const handleAddCard = async(item)=>{
       fetch('http://localhost:3001/api/product/card', {
@@ -18,6 +20,7 @@ function ProductCart({item}) {
             }),
         })
         .then(res=>res.json())
+        .then(()=>router.push('/card'))
   }
   return (
     <Card style={{ width: '18rem' }}>
