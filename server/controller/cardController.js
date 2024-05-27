@@ -10,14 +10,14 @@ const addCard = async(req,res)=>{
       if(req.query.type=="incre"){
         await Card.findByIdAndUpdate({_id:existProductCard[0]._id},{quantity:existProductCard[0].quantity + 1},{new:true})
         
-      }else{
+      }else if(req.query.type=="dicre"){
         await Card.findByIdAndUpdate({_id:existProductCard[0]._id},{quantity:existProductCard[0].quantity - 1},{new:true})
       }
     }else{
         let card = new Card({
             productId: productId,
             ownerId: ownerId,
-            quantity: quantity
+            quantity: 1
         })
         card.save()
 

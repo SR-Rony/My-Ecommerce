@@ -39,7 +39,7 @@ const SightMenu = () => {
       getItem('Vew Subcategory', '12'),
     ]),
     getItem('Discount', 'sub5', <SettingOutlined />, [
-      getItem('Add Discount', '13'),
+      getItem('Add Discount', '/discount'),
       getItem('Vew Discount', '14'),
     ]),
   ];
