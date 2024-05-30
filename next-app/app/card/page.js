@@ -1,9 +1,10 @@
 "use client"
 
 import React from 'react'
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import Image from 'next/image'
+import Form from 'react-bootstrap/Form';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
@@ -14,6 +15,11 @@ async function getData() {
       throw new Error('Failed to fetch data')
     }
     return res.json()
+  }
+
+  // add cupon button
+  const handleAddCupon =()=>{
+    console.log('cupon addd hoyse');
   }
 
 const Card =async () => {
@@ -91,10 +97,15 @@ const Card =async () => {
               </tr>
             </tbody>
           </Table>
-
+            {/* add cupon */}
+          <div>
+            <Form.Control type="text" placeholder="Inter your Cupon" />
+            <Button onClick={handleAddCupon} className='mt-2' variant="primary">Add Cupon</Button>{' '}
+          </div>
+            {/* preament */}
             <PayPalScriptProvider options={{ clientId: "test" }}>
               <PayPalButtons style={{ layout: "horizontal" }} />
-          </PayPalScriptProvider>
+            </PayPalScriptProvider>
         </Container>
     </section>
   )
