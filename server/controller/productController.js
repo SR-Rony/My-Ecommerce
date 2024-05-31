@@ -46,9 +46,9 @@ const createProduct =async(req,res)=>{
 }
 // vew single product
 const singleProduct =async(req,res)=>{
-    let name = req.params.slug
+    let slug = req.params.slug
     try{
-        let singlePro = Product.findOne({name:name})
+        let singlePro = await Product.findOne({slug:slug})
         res.send({
             success:true,
             messages:"vew single product",

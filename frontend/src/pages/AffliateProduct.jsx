@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const AffliateProduct = () => {
+  let user = useSelector((state)=>state.user.value)
+  console.log(user);
 
   const [allProduct,setAllProduct] = useState([])
   useEffect(()=>{
@@ -17,7 +20,8 @@ const AffliateProduct = () => {
     <div>
       {allProduct.map((item,index)=>(
         <div key={index}>
-          <h2>{item.name}</h2>
+         {console.log(item.slug)}
+          <h2>{item.name} ---{`http://localhost:3000/product/${item.slug}?userId:${user._id}`}</h2>
         </div>
       ))}
     </div>
