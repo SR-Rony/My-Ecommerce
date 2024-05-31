@@ -44,4 +44,23 @@ const createProduct =async(req,res)=>{
         })
     }
 }
-module.exports ={createProduct,vewProduct}
+// vew single product
+const singleProduct =async(req,res)=>{
+    let name = req.params.slug
+    try{
+        let singlePro = Product.findOne({name:name})
+        res.send({
+            success:true,
+            messages:"vew single product",
+            data:singlePro
+        })
+       
+    }catch(err){
+        console.log(err);
+        res.send({
+            success:false,
+            messages:"single product not vew",
+        })
+    }
+}
+module.exports ={createProduct,vewProduct,singleProduct}

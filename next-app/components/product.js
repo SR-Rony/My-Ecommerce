@@ -12,12 +12,10 @@ async function getData() {
    
     return res.json()
   }
-   
-
-export const Product = async() => {
+const Product = async() => {
     const data = await getData()
   return (
-    <section>
+    <>
       <Container>
         <Row>
             {
@@ -29,6 +27,7 @@ export const Product = async() => {
             }
         </Row>
       </Container>
-    </section>
+    </>
   )
 }
+export default Product

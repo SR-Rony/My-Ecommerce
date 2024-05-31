@@ -42,6 +42,9 @@ const SightMenu = () => {
       getItem('Add Discount', '/discount'),
       getItem('Vew Discount', '14'),
     ]),
+    getItem('Affliate', 'sub6', <SettingOutlined />, [
+      getItem('Affliate-Product', '/affliate-product'),
+    ]),
   ];
 
   const [theme, setTheme] = useState('light');

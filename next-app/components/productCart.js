@@ -3,6 +3,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 function ProductCart({item}) {
   const router = useRouter()
@@ -26,7 +27,7 @@ function ProductCart({item}) {
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={`http://localhost:3001${item.images}`} />
       <Card.Body>
-        <Card.Title>{item.name}</Card.Title>
+        <Card.Title><Link href={`/product/${item.slug}`}>{item.name}</Link></Card.Title>
         <Card.Text>
           {item.description}
         </Card.Text>

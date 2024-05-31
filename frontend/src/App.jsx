@@ -23,6 +23,7 @@ import VewProduct from './pages/VewProduct';
 import AddVariant from './pages/AddVariant';
 import VewVariant from './pages/VewVariant';
 import Discount from './pages/Discount';
+import AffliateProduct from './pages/AffliateProduct';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path='/addvariant' element={<AddVariant />}/>
           <Route path='/vewvariant' element={<VewVariant />}/>
           <Route path='/discount' element={<Discount />}/>
+          <Route path='/affliate-product' element={<AffliateProduct />}/>
         </Route>
       </Route>
     )

@@ -1,7 +1,7 @@
 const express = require("express")
 const { createcategory, getCategory } = require("../controller/createCategoryController")
 const {subCategory, vewSubCategory,} = require("../controller/subCategoryController")
-const { createProduct, vewProduct } = require("../controller/productController")
+const { createProduct, vewProduct, singleProduct } = require("../controller/productController")
 const router = express.Router()
 const upload = require("../middlewares/uplodFile")
 const { createProVariant } = require("../controller/proVariantController")
@@ -11,6 +11,8 @@ const { addCupon } = require("../controller/cuponController")
 // product
 router.post("/",upload.single("images"),createProduct)
 router.get("/",vewProduct)
+// single product
+router.get("/singleproduct/:slug",singleProduct)
 // product variant route
 router.post("/provariant",upload.single("images"),createProVariant)
 
