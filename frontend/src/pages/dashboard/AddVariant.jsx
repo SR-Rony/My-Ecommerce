@@ -1,31 +1,42 @@
-import React, { useState } from 'react'
-import Heading from '../components/heading/Heading';
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Button,Form, Input,Select } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import slugify from 'react-slugify';
+import Heading from '../../components/heading/Heading';
+// import slugify from 'react-slugify';
 
-const AddProduct = () => {
+const AddVariant = () => {
   const user = useSelector((state)=>(state.user.value))
   
   
-  const [slugText,setSlugText]=useState("")
   const [loading, setLoading] = useState(false);
-  const [discription, setDiscritption] = useState('');
+  const [productList, setProductList] = useState([]);
+  const [productId,setProductId]=useState("")
   const [images, setImages] = useState({});
+
+  useEffect(()=>{
+   async function productVew() {
+      let allProduct = await axios.get("http://localhost:3001/api/product")
+      let array =[]
+      allProduct.data.data.map((item)=>{
+        array.push({
+          value:item._id,
+          label:item.name,
+        })
+      })
+      setProductList(array)
+    }
+    productVew()
+  },[])
 
   const onFinish = async(values) => {
       try{
-        const data = await axios.post("http://localhost:3001/api/product",{
+        const data = await axios.post("http://localhost:3001/api/product/provariant",{
           name:values.name,
-          description:discription,
           images:images,
           regularprice:values.regularprice,
           saleprice:values.saleprice,
-          slug:slugText
+          productId:productId
         },
         {
           headers:{
@@ -33,20 +44,9 @@ const AddProduct = () => {
           }
         }
       )
-        console.log("data",data);
-        // console.log(data.data.message);
-        // toast.error(data.data.message, {
-        //   position: "top-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "dark",
-        // });
+      console.log('form all data',data)
       }catch(error){
-        console.error(error)
+        console.error("error data",error)
       }
   }
   const onFinishFailed = (errorInfo) => {
@@ -55,14 +55,18 @@ const AddProduct = () => {
   };  
 
   const handleImages =(e)=>{
-    console.log("images",e.target.files[0]);
     setImages(e.target.files[0])
   }
+
+  // handle select
+  const handleChange = (value) => {
+    setProductId(value)
+  };
 
   return (
     <div className='flex justify-center items-center h-[80vh]'>
     <div className='p-5 shadow-lg ring-1 text-center ring-primary rounded-md'>
-      <Heading className='text-3xl mb-10' tag='h1' text="New Product Add"/>
+      <Heading className='text-3xl mb-10' tag='h1' text="Product variant add"/>
       <Form className='mx-auto pr-32 w-full'
         name="basic"
         labelCol={{
@@ -89,26 +93,8 @@ const AddProduct = () => {
             {type:"text"}
           ]}
         >
-          <Input onChange={(e)=>setSlugText(e.target.value)} className='ml-4' />
+          <Input />
         </Form.Item>
-        <CKEditor
-                    editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor&nbsp;5!</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-            } }
-            onChange={ ( event,editor ) => {
-                console.log( "description",editor.getData() );
-                setDiscritption(editor.getData())
-            } }
-            onBlur={ ( event, editor ) => {
-                console.log( 'Blur.', editor );
-            } }
-            onFocus={ ( event, editor ) => {
-                console.log( 'Focus.', editor );
-            } }
-        />
         <Form.Item
           label="Product image"
           name="imags"
@@ -148,21 +134,14 @@ const AddProduct = () => {
         >
           <Input className='ml-4' />
         </Form.Item>
-        {/* <Form.Item
-          label="slug"
-          name="slug"
-          rules={[
-            {
-              required: true,
-              message: 'Please inter your slug ',
-            },
-            {type:"text"}
-          ]}
-        >
-          <Input defaultValue={slugify(slugText)} disabled className='ml-4' />
-        </Form.Item> */}
-        <label htmlFor="">Slug : </label>
-        <input className='ring-1 ring-secoundary w-1/2 rounded-md p-2 m-3' disabled value={slugify(slugText)} type="text" />
+        <Select
+      defaultValue=""
+        style={{
+          width: 120,
+        }}
+        onChange={handleChange}
+        options={productList}
+    />
 
         <Form.Item
           wrapperCol={{
@@ -181,4 +160,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default AddVariant

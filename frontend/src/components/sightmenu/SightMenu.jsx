@@ -27,23 +27,23 @@ const SightMenu = () => {
       getItem('User', '2'),
     ]),
     getItem('Product', 'sub2', <AppstoreOutlined />, [
-      getItem('Add Product', 'addproduct'),
-      getItem('Vew Product', 'vewproduct'),
-      getItem('Add Variant', 'addvariant'),
-      getItem('Vew Variant', 'vewvariant'),
+      getItem('Add Product', '/dashboard/addproduct'),
+      getItem('Vew Product', '/dashboard/vewproduct'),
+      getItem('Add Variant', '/dashboard/addvariant'),
+      getItem('Vew Variant', '/dashboard/vewvariant'),
     ]),
     getItem('Category', 'sub4', <SettingOutlined />, [
-      getItem('Add Category', 'addcategory'),
-      getItem('Add Subcategory', 'subcategory'),
-      getItem('Vew Category', 'vewcategory'),
+      getItem('Add Category', '/dashboard/addcategory'),
+      getItem('Add Subcategory', '/dashboard/subcategory'),
+      getItem('Vew Category', '/dashboard/vewcategory'),
       getItem('Vew Subcategory', '12'),
     ]),
     getItem('Discount', 'sub5', <SettingOutlined />, [
-      getItem('Add Discount', '/discount'),
+      getItem('Add Discount', '/dashboard/discount'),
       getItem('Vew Discount', '14'),
     ]),
     getItem('Affliate', 'sub6', <SettingOutlined />, [
-      getItem('Affliate-Product', '/affliate-product'),
+      getItem('Affliate-Product', '/dashboard/affliate-product'),
     ]),
   ];
 

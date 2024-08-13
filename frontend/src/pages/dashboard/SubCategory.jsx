@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Heading from '../components/heading/Heading';
 import { Button, Checkbox, Form, Input,Select  } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Heading from '../../components/heading/Heading';
 
 const SubCategory = () => {
 
@@ -79,7 +79,7 @@ const SubCategory = () => {
   return (
     <div className='flex justify-center items-center h-[80vh]'>
     <div className='p-5 shadow-lg ring-1 text-center ring-primary rounded-md'>
-      <Heading className='text-3xl mb-10' tag='h1' text="New Product Add"/>
+      {/* <Heading className='text-3xl mb-10' tag='h1' text="New Product Add"/> */}
       <Form className='mx-auto pr-32 w-full'
         name="basic"
         labelCol={{

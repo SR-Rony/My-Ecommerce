@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Input,Select } from 'antd';
-import Heading from '../components/heading/Heading';
+import Heading from '../../components/heading/Heading';
 
 const onFinish = (values) => {
     console.log('Success:', values);
@@ -19,7 +19,7 @@ const Discount = () => {
   return (
     <div className='flex justify-center items-center h-[80vh]'>
     <div className='p-5 shadow-lg ring-1 text-center ring-primary rounded-md'>
-      <Heading className='text-3xl mb-10' tag='h1' text="Discount"/>
+      {/* <Heading className='text-3xl mb-10' tag='h1' text="Discount"/> */}
       <Form className='mx-auto pr-32 w-full'
         name="basic"
         labelCol={{

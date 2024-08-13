@@ -13,11 +13,11 @@ const Register = () => {
   const user = useSelector((state)=>(state.user.value))
   let navigate=useNavigate()
 
-  useEffect(()=>{
-    if(user){
-      navigate("/home")
-    }
-  },[])
+  // useEffect(()=>{
+  //   if(user){
+  //     navigate("/home")
+  //   }
+  // },[])
 
   const onFinish = async(values) => {
     console.log('Success:', values.images);

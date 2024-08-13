@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Heading from '../components/heading/Heading';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Heading from '../../components/heading/Heading';
 
 const AddCategory = () => {
 

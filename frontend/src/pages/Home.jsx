@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 
-  const user = useSelector((state)=>state.user.value)
-  let navigate = useNavigate()
+  // const user = useSelector((state)=>state.user.value)
+  // let navigate = useNavigate()
 
-  useEffect(()=>{
-    if(!user){
-      navigate("/login")
-    }else{
-      navigate("/home")
-    }
-  },[])
+  // useEffect(()=>{
+  //   if(!user){
+  //     navigate("/login")
+  //   }else{
+  //     navigate("/home")
+  //   }
+  // },[])
 
   return (
-    <div>
+    <div className='mt-24'>
       <h1>welcome to home pages</h1>
     </div>
   )
