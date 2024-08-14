@@ -25,6 +25,7 @@ import VewProduct from './pages/dashboard/VewProduct';
 import VewVariant from './pages/dashboard/VewVariant';
 import Discount from './pages/dashboard/Discount';
 import RootDashobard from './components/dashobard-root/RootDashobard';
+import Dashboard from './pages/dashboard/Dashboard';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path='/newpassword/:token' element={<NewPassword />}/>
         </Route>
         <Route path="/" element={<RootDashobard />}>
+          <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/dashboard/addcategory' element={<AddCategory />}/>
           <Route path='/dashboard/subcategory' element={<SubCategory />}/>
           <Route path='/dashboard/vewcategory' element={<VewCategory/>}/>

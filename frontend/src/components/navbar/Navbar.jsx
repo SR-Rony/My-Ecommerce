@@ -4,11 +4,12 @@ import { FaRegCircleUser  } from "react-icons/fa6";
 import {FaRegHeart } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import Heading from "../heading/Heading";
+import Images from "../images/Images";
 
 const Navbar = () => {
   
 
-  // let userInfo = useSelector(state => state.user.value)
+  let userInfo = useSelector(state =>state.user.value)
 
   // const handleProfile =()=>{
   //   setProfile(tr)
@@ -30,15 +31,15 @@ const Navbar = () => {
             <div className="order-2 sm:order-3 col-span-6 sm:col-span-3 flex gap-3 md:gap-5 text-3xl justify-end  items-center">
               <Link className=''><FaRegHeart/></Link>
               <Link className=''><FiShoppingCart/></Link>
-                {/* {userInfo 
+                {userInfo 
                 ?<Link to='/dashboard'>
                   <div className='w-8 h-8 ring ring-white rounded-full overflow-hidden cursor-pointer'>
-                    <Image src={userInfo.image} alt='profile'/>
+                    <Images src={userInfo.image} alt='profile'/>
                   </div>
                 </Link>
                 :<Link className='' to='/login'><FaRegCircleUser /></Link>
-                } */}
-                <Link className='' to='/login'><FaRegCircleUser /></Link>
+                }
+                {/* <Link className='' to='/login'><FaRegCircleUser /></Link> */}
             </div>
           </div>
         </div>

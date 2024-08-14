@@ -60,15 +60,8 @@ const SightMenu = () => {
   };
 
   return (
-    <div className=''>
-    <Switch
-      checked={theme === 'dark'}
-      onChange={changeTheme}
-      checkedChildren="Dark"
-      unCheckedChildren="Light"
-    />
-    <br />
-    <br />
+    <div className='w-full h-screen'>
+    
     <Menu
       theme={theme}
       onClick={onClick}

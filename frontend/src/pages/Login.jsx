@@ -11,16 +11,16 @@ import { useDispatch, useSelector } from 'react-redux';
 const Login = () => {
   const [loading, setLoading] = useState(false);
 
-  const user = useSelector((state)=>(state.user.value))
+  // const user = useSelector((state)=>(state.user.value))
   // console.log(user);
   let navigate = useNavigate()
   let dispatch = useDispatch()
 
-    useEffect(()=>{
-      if(user){
-        navigate("/home")
-      }
-    },[])
+    // useEffect(()=>{
+    //   if(user){
+    //     navigate("/home")
+    //   }
+    // },[])
 
   const onFinish = async(values) => {
     try{
@@ -33,7 +33,7 @@ const Login = () => {
       let userData=data.data.data
       dispatch(activeUser(userData))
       localStorage.setItem("user",JSON.stringify(userData))
-      navigate("/home")
+      navigate("/")
       setLoading(false)
 
     }catch(err){
