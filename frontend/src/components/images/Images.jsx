@@ -1,8 +1,8 @@
-import React from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const Images = ({}) => {
+const Images = ({src,className,alt}) => {
   return (
-    <img src="" alt="" />
+    <img className={twMerge('w-full object-cover',className)}  src={src} alt={alt} />
   )
 }
 

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import UserList from '../components/users-list/UserList'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Banner from '../components/banner/Banner'
+import Category from '../components/category/Category'
 
 const Home = () => {
 
@@ -17,8 +19,9 @@ const Home = () => {
   // },[])
 
   return (
-    <div className='mt-24'>
-      <h1>welcome to home pages</h1>
+    <div className='mt-24 bg-slate-300'>
+      <Banner/>
+      <Category/>
     </div>
   )
 }
