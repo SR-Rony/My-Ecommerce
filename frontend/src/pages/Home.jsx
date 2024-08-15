@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Banner from '../components/banner/Banner'
 import Category from '../components/category/Category'
+import AllProduct from '../components/all-product/AllProduct'
 
 const Home = () => {
 
@@ -22,6 +23,7 @@ const Home = () => {
     <div className='mt-24 bg-slate-300'>
       <Banner/>
       <Category/>
+      <AllProduct/>
     </div>
   )
 }
