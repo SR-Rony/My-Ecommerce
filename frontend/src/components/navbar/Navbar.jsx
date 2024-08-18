@@ -1,19 +1,34 @@
 import { FiSearch,FiShoppingCart  } from "react-icons/fi";
 import {Link} from 'react-router-dom'
-import { FaRegCircleUser  } from "react-icons/fa6";
+import { FaRegCircleUser,FaAngleDown   } from "react-icons/fa6";
 import {FaRegHeart } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import Heading from "../heading/Heading";
 import Paragraph from "../paragraph/Paragraph";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "antd";
 
 const Navbar = () => {
-  
+  let [dropDown,setDropdown]= useState(false)
+  const ref =useRef()
 
   let userInfo = useSelector(state =>state.user.value)
+  
 
   // const handleProfile =()=>{
   //   setProfile(tr)
   // }
+
+  useEffect(()=>{
+    document.body.addEventListener("click",(e)=>{
+      if(ref.current.contains(e.target)){
+        setDropdown(true)
+      }else{
+        setDropdown(false)
+      }
+    })
+  },[])
+
 
   return (
     <nav className='py-4 bg-black text-white absolute z-50 w-full top-0 left-0 shadow-xl'>
@@ -28,19 +43,38 @@ const Navbar = () => {
                 <FiSearch className='font-bold'/>
               </div>
             </div>
-            <div className="order-2 sm:order-3 col-span-6 sm:col-span-3 flex gap-3 md:gap-5 text-3xl justify-end  items-center">
-              <Link className=''><FaRegHeart/></Link>
-              <Link className=''><FiShoppingCart/></Link>
-                {userInfo 
+            <div className="order-2 sm:order-3 col-span-6 sm:col-span-3 flex gap-3 md:gap-5 justify-end  items-center">
+              {/* <Link className=''><FaRegHeart/></Link> */}
+              <Link className='text-3xl'><FiShoppingCart/></Link>
+                {/* {userInfo 
                 ?<Link className="text-white" to='/dashboard'>
                   <Paragraph className='text-base' text={userInfo.name}/>
-                  {/* <div className='w-8 h-8 ring ring-white rounded-full overflow-hidden cursor-pointer'>
+                  <div className='w-8 h-8 ring ring-white rounded-full overflow-hidden cursor-pointer'>
                     <Images src={userInfo.image} alt='profile'/>
-                  </div> */}
+                  </div>
                 </Link>
                 :<Link className='' to='/login'><FaRegCircleUser /></Link>
-                }
-                {/* <Link className='' to='/login'><FaRegCircleUser /></Link> */}
+                } */}
+                <div ref={ref} className='flex items-center gap-2 relative cursor-pointer'>
+                  <FaRegCircleUser className="text-3xl" />
+                  {userInfo.name && <Paragraph className='text-base' text={userInfo.name}/>}
+                  <FaAngleDown className="text-base"/>
+                  {dropDown &&
+                    <div className="absolute top-10 rounded-md right-0 p-3 bg-secoundary">
+                      <div className="w-5 h-5 absolute bg-secoundary -top-2 left-1/2 rotate-45"></div>
+                      <Paragraph text='Your Profile'/>
+                      <Paragraph text='acoutn'/>
+                      <Paragraph text='acoutn'/>
+                      <Paragraph text='acoutn'/>
+                      <span className="w-full h-[2px] bg-primary my-2 block"></span>
+                      {userInfo
+                      ?<Button className='bg-primary' type="bg-secoundary" htmlType="submit"> Logout</Button>
+                      :<Button className='bg-primary' type="bg-secoundary" htmlType="submit"> Login</Button>
+                      }
+                      
+                    </div>
+                  }
+                </div>
             </div>
           </div>
         </div>
