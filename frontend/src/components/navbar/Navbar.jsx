@@ -1,23 +1,32 @@
 import { FiSearch,FiShoppingCart  } from "react-icons/fi";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { FaRegCircleUser,FaAngleDown   } from "react-icons/fa6";
 import {FaRegHeart } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Heading from "../heading/Heading";
 import Paragraph from "../paragraph/Paragraph";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "antd";
+import { activeUser } from "../../fetures/users/userSlice";
 
 const Navbar = () => {
   let [dropDown,setDropdown]= useState(false)
   const ref =useRef()
 
   let userInfo = useSelector(state =>state.user.value)
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
   
 
   // const handleProfile =()=>{
   //   setProfile(tr)
   // }
+
+  const handleLogout =()=>{
+    dispatch(activeUser(null));
+        localStorage.removeItem('user')
+        navigate('/login')
+  }
 
   useEffect(()=>{
     document.body.addEventListener("click",(e)=>{
@@ -57,19 +66,17 @@ const Navbar = () => {
                 } */}
                 <div ref={ref} className='flex items-center gap-2 relative cursor-pointer'>
                   <FaRegCircleUser className="text-3xl" />
-                  {userInfo.name && <Paragraph className='text-base' text={userInfo.name}/>}
+                  {userInfo && <Paragraph className='text-base' text={userInfo.name}/>}
                   <FaAngleDown className="text-base"/>
                   {dropDown &&
-                    <div className="absolute top-10 rounded-md right-0 p-3 bg-secoundary">
-                      <div className="w-5 h-5 absolute bg-secoundary -top-2 left-1/2 rotate-45"></div>
-                      <Paragraph text='Your Profile'/>
-                      <Paragraph text='acoutn'/>
-                      <Paragraph text='acoutn'/>
-                      <Paragraph text='acoutn'/>
-                      <span className="w-full h-[2px] bg-primary my-2 block"></span>
+                    <div className="absolute top-12 rounded-md right-0 p-2 w-40 bg-secoundary">
+                      <div className="w-5 h-5 absolute bg-secoundary -top-2 right-4 rotate-45"></div>
+                      <Link to='/profile'><Paragraph className='border-b-2 pb-2 my-2 border-primary' text='Your Profile'/></Link>
+                      <Link to='dashboard'><Paragraph className='border-b-2 pb-2 border-primary' text='Dashboard'/></Link>
+                      {/* <span className="w-full h-[2px] bg-primary my-2 block"></span> */}
                       {userInfo
-                      ?<Button className='bg-primary' type="bg-secoundary" htmlType="submit"> Logout</Button>
-                      :<Button className='bg-primary' type="bg-secoundary" htmlType="submit"> Login</Button>
+                      ?<Button onClick={handleLogout} className='bg-primary mt-4'> Logout</Button>
+                      :<Button onClick={()=>navigate('/login')} className='bg-primary mt-4'> Login</Button>
                       }
                       
                     </div>

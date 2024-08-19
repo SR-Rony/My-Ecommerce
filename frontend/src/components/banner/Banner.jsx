@@ -11,6 +11,8 @@ import slider7 from '../../assets/slider7.jpg'
 // import Image from '../image/Image';
 import { useState } from "react";
 import Images from "../images/Images";
+import PrevArrow from "../slider-arrow/PrevArrow";
+import NextArrow from "../slider-arrow/NextArrow";
 const banerImage = [slider1,slider6,slider7,slider4,slider5,slider3,slider2]
 
 const Banner = () => {
@@ -21,7 +23,8 @@ const Banner = () => {
         beforeChange: (prev, next) => {
           setDotActive(next);
         },
-        arrows:false,
+        prevArrow:<PrevArrow/>,
+        nextArrow:<NextArrow/>,
         infinite: true,
         autoplay: true,
         speed: 2000,
@@ -32,12 +35,14 @@ const Banner = () => {
           {
             breakpoint: 600,
             settings: {
-              dots:false
+              dots:false,
+              arrows:false
             }
           },
           {
             breakpoint: 480,
             settings: {
+              arrows:false,
               dots:false
             }
           }
