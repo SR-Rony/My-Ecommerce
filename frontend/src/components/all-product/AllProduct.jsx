@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import Product from '../product/Product'
 import Heading from '../heading/Heading'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const AllProduct = () => {
     const [product,setProduct] = useState([])
+    let navigate = useNavigate()
 
     useEffect(()=>{
         let data = async () => {
@@ -21,6 +23,11 @@ const AllProduct = () => {
         data()
     },[])
 
+    const handleClick =(item)=>{
+        navigate(`/product`)
+        
+    }
+
   return (
     <div className='my-5 py-5 shadow-md bg-white'>
         <div className="container mx-auto px-2">
@@ -28,9 +35,7 @@ const AllProduct = () => {
             <div className="grid grid-cols-12 gap-2">
                 
                 {product.map((item,index)=>(
-                    // console.log(item)
-                    
-                    <div key={index} className="col-span-6 md:col-span-3 lg:col-span-2">
+                    <div onClick={()=>handleClick(item)} key={index} className="col-span-6 md:col-span-3 lg:col-span-2">
                         <Product price='200$' title={item.name} image={`http://localhost:3001${item.images}`}/>
                     </div>
                 ))}

@@ -119,7 +119,7 @@ const Login = () => {
         }
         </Form.Item>
       </Form>
-      <p className='text-center'>Dont have an acount ? <Link className='text-primary' to='/'>Register</Link></p>
+      <p className='text-center'>Dont have an acount ? <Link className='text-primary' to='/register'>Register</Link></p>
     </div>
   </div>
   )

@@ -51,7 +51,7 @@ const ForgotPassword = () => {
 
 
   return (
-    <>
+    <div className='flex justify-center items-center w-full h-screen'>
     <Form className='mx-auto w-1/2 pr-32'
       name="basic"
       labelCol={{
@@ -93,7 +93,7 @@ const ForgotPassword = () => {
       }
       </Form.Item>
     </Form>
-    </>
+    </div>
   )
 }
 
