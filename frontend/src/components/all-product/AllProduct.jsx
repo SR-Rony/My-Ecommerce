@@ -24,7 +24,7 @@ const AllProduct = () => {
     },[])
 
     const handleClick =(item)=>{
-        navigate(`/product`)
+        navigate(`/product/${item.slug}`)
         
     }
 

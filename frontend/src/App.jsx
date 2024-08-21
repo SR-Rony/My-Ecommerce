@@ -27,6 +27,7 @@ import Discount from './pages/dashboard/Discount';
 import RootDashobard from './components/dashobard-root/RootDashobard';
 import Dashboard from './pages/dashboard/Dashboard';
 import Product from './pages/Product';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
           <Route path='/forgot_password' element={<ForgotPassword />}/>
           <Route path='/verification/:token' element={<Verification />}/>
           <Route path='/newpassword/:token' element={<NewPassword />}/>
-          <Route path='/product' element={<Product/>}/>
+          <Route path='/product/:slug' element={<Product/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Route>
         <Route path="/" element={<RootDashobard />}>
           <Route path='/dashboard' element={<Dashboard />}/>
